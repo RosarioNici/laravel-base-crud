@@ -17,5 +17,5 @@ Route::get('/', function () {
     return redirect()->route('comis.index');
 });
 
-Route::get('comis/confirm-delete/{comis}', 'ComisController@confirmDelete')->name('comis.confirm-delete');
+Route::get('comis/delete-conf/{comis}', 'ComisController@confirmDelete')->name('comis.delete-conf');
 Route::resource('comis', 'ComisController');

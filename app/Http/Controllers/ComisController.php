@@ -84,7 +84,7 @@ class ComisController extends Controller
 
     public function confirmDelete(Comis $Comis)
     {
-        return view('Comis.confirm-delete', compact('Comis'));
+        return view('Comis.delete-conf', compact('Comis'));
     }
 
     /**
