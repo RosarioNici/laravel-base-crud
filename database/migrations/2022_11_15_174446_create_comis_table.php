@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFumettosTable extends Migration
+class CreateComisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateFumettosTable extends Migration
      */
     public function up()
     {
-        Schema::create('fumettos', function (Blueprint $table) {
+        Schema::create('comis', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('thumb');
-            $table->string('price');
-            $table->string('series');
-            $table->string('sale_date');
-            $table->string('type');
+            $table->float('price', 5, 2);
+            $table->string('series', 50);
+            $table->date('sale_date');
+            $table->string('type', 15);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateFumettosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fumettos');
+        Schema::dropIfExists('comis');
     }
 }

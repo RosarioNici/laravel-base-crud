@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('comis.index');
 });
 
-Route::resource('fumettis', 'fumetti');
+Route::get('comis/confirm-delete/{comis}', 'ComisController@confirmDelete')->name('comis.confirm-delete');
+Route::resource('comis', 'ComisController');

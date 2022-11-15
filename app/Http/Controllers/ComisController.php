@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comis;
 use Illuminate\Http\Request;
 
-class fumetti extends Controller
+class ComisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,8 @@ class fumetti extends Controller
     public function index()
     {
         //
+        $Comiss = Comis::all();
+        return view('Comis.index', compact('Comis'));
     }
 
     /**
@@ -24,6 +27,7 @@ class fumetti extends Controller
     public function create()
     {
         //
+        return view('Comis.create');
     }
 
     /**
@@ -35,26 +39,32 @@ class fumetti extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $newComis = new Comis();
+        $newComis->fill($data);
+        $newComis->save();
+        return redirect()->route('Comis.show', $newComis->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comis  $Comis
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comis $Comis)
     {
         //
+        return view('Comis.show', compact('Comis'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Comis  $Comis
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comis $Comis)
     {
         //
     }
@@ -63,22 +73,30 @@ class fumetti extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Comis  $Comis
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comis $Comis)
     {
         //
+    }
+
+
+    public function confirmDelete(Comis $Comis)
+    {
+        return view('Comis.confirm-delete', compact('Comis'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Comis  $Comis
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comis $Comis)
     {
         //
+        $Comis->delete();
+        return redirect()->route('Comis.index');
     }
 }
